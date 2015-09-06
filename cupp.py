@@ -295,7 +295,8 @@ elif sys.argv[1] == '-i':
 	words = ['']
 	oth = raw_input("> Do you want to add some key words about the victim? Y/[N]: ").lower()
 	if oth == "y":
-		words = raw_input("> Please enter the words, separated by comma. [i.e. hacker, juice, black]: ").split(", ").lower()
+		words = raw_input("> Please enter the words, separated by comma. [i.e. hacker, juice, black]: ").split(",")
+                words = map(lambda x: x.lower().strip(), words)
 
 	spechars = ['']
 	spechars1 = raw_input("> Do you want to add special chars at the end of words? Y/[N]: ").lower()
@@ -474,6 +475,7 @@ elif sys.argv[1] == '-i':
 	komb15 = ['']
 	komb16 = ['']
 	komb21 = ['']
+        komb22 = []
 	if randnum == "y":
 		komb12 = list(concats(word, numfrom, numto))
 		komb13 = list(concats(kombinaa, numfrom, numto))
@@ -481,6 +483,7 @@ elif sys.argv[1] == '-i':
 		komb15 = list(concats(kombinaaw, numfrom, numto))
 		komb16 = list(concats(kombinaak, numfrom, numto))
 		komb21 = list(concats(reverse, numfrom, numto))
+        
                 
         komb12.extend(humanize(word))
         komb13.extend(humanize(kombinaa))
@@ -488,6 +491,14 @@ elif sys.argv[1] == '-i':
         komb15.extend(humanize(kombinaaw))
         komb16.extend(humanize(kombinaak))
         komb21.extend(humanize(reverse))
+
+        _komb22 = []
+        for w in word:
+            for kaak in kombinaak:
+                _komb22.append(kaak + w)
+        komb22.extend(_komb22)
+        komb22.extend(humanize(_komb22))
+        print "komb22:", komb22
         
 	komb17 = list(komb(reverse, years))
 	komb18 = list(komb(rev_w, wbdss))
@@ -530,6 +541,7 @@ elif sys.argv[1] == '-i':
 	komb_unique19 = dict.fromkeys(komb19).keys()
 	komb_unique20 = dict.fromkeys(komb20).keys()
 	komb_unique21 = dict.fromkeys(komb21).keys()
+        komb_unique22 = dict.fromkeys(komb22).keys()
 	komb_unique01 = dict.fromkeys(kombinaa).keys()
 	komb_unique02 = dict.fromkeys(kombinaac).keys()
 	komb_unique03 = dict.fromkeys(kombinaaw).keys()
@@ -542,7 +554,7 @@ elif sys.argv[1] == '-i':
 	komb_unique011 = dict.fromkeys(komb005).keys()
 	komb_unique012 = dict.fromkeys(komb006).keys()
 	
-	uniqlist = bdss+wbdss+kbdss+reverse+komb_unique01+komb_unique02+komb_unique03+komb_unique04+komb_unique05+komb_unique1+komb_unique2+komb_unique3+komb_unique4+komb_unique5+komb_unique6+komb_unique7+komb_unique8+komb_unique9+komb_unique10+komb_unique11+komb_unique12+komb_unique13+komb_unique14+komb_unique15+komb_unique16+komb_unique17+komb_unique18+komb_unique19+komb_unique20+komb_unique21+komb_unique07+komb_unique08+komb_unique09+komb_unique010+komb_unique011+komb_unique012
+	uniqlist = bdss+wbdss+kbdss+reverse+komb_unique01+komb_unique02+komb_unique03+komb_unique04+komb_unique05+komb_unique1+komb_unique2+komb_unique3+komb_unique4+komb_unique5+komb_unique6+komb_unique7+komb_unique8+komb_unique9+komb_unique10+komb_unique11+komb_unique12+komb_unique13+komb_unique14+komb_unique15+komb_unique16+komb_unique17+komb_unique18+komb_unique19+komb_unique20+komb_unique21+komb_unique22+komb_unique07+komb_unique08+komb_unique09+komb_unique010+komb_unique011+komb_unique012
 	
 	unique_lista = dict.fromkeys(uniqlist).keys()
 	unique_leet = []
