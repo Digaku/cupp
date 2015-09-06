@@ -78,6 +78,15 @@ def concats(seq, start, stop):
             yield mystr + str(num)
 
 
+_humanize_const = ["123","12345","123456789","1234567890",
+                   "qwerty","asdf","123123","123abc","asdf123",
+                   "123asdf"]
+def humanize(seq):
+    global _humanize_consnt
+    for _str in seq:
+        for postfix in _humanize_const:
+            yield _str + postfix
+
 # for sorting and making combinations...
 
 def komb(seq, start):
@@ -87,12 +96,12 @@ def komb(seq, start):
 
 if len(sys.argv) < 2 or sys.argv[1] == '-h':
 	print " ___________ "
-	print " \033[07m  cupp.py! \033[27m                # Common"            
+	print "   cupp.py!                 # Common"            
 	print "      \                     # User"
-	print "       \   \033[1;31m,__,\033[1;m             # Passwords" 
-	print "        \  \033[1;31m(\033[1;moo\033[1;31m)____\033[1;m         # Profiler"
-	print "           \033[1;31m(__)    )\ \033[1;m  "
-	print "           \033[1;31m   ||--|| \033[1;m\033[05m*\033[25m\033[1;m      [ Muris Kurgas | j0rgan@remote-exploit.org ]\r\n\r\n"
+	print "       \   ,__,             # Passwords" 
+	print "        \  (oo)____         # Profiler"
+	print "           (__)    )\   "
+	print "              ||--|| *      [ Muris Kurgas | j0rgan@remote-exploit.org ]\r\n\r\n"
 	
 	print "	[ Options ]\r\n"
 	print "	-h	You are looking at it baby! :)"
@@ -112,7 +121,7 @@ if len(sys.argv) < 2 or sys.argv[1] == '-h':
 	exit()
 
 elif sys.argv[1] == '-v':
-	print "\r\n	\033[1;31m[ cupp.py ]  v3.0\033[1;m\r\n"
+	print "\r\n	[ cupp.py ]  v3.0\r\n"
 	print "	* Hacked up by j0rgan - j0rgan@remote-exploit.org"
 	print "	* http://www.remote-exploit.org\r\n"
 	print "	Take a look docs/README file for more info about the program\r\n"
@@ -134,7 +143,7 @@ elif sys.argv[1] == '-w':
 		listica += x.split()
 	
 	print "\r\n      *************************************************"	
-	print "      *                    \033[1;31mWARNING!!!\033[1;m                 *"
+	print "      *                    WARNING!!!                 *"
 	print "      *         Using large wordlists in some         *"
 	print "      *       options bellow is NOT recommended!      *"
 	print "      *************************************************\r\n"
@@ -232,8 +241,8 @@ elif sys.argv[1] == '-w':
 	f.close()
 	
 	
-	print "[+] Saving dictionary to \033[1;31m"+sys.argv[2]+".cupp.txt\033[1;m, counting \033[1;31m"+str(lines)+" words.\033[1;m"
-	print "[+] Now load your pistolero with \033[1;31m"+sys.argv[2]+".cupp.txt\033[1;m and shoot! Good luck!"
+	print "[+] Saving dictionary to "+sys.argv[2]+".cupp.txt, counting "+str(lines)+" words."
+	print "[+] Now load your pistolero with "+sys.argv[2]+".cupp.txt and shoot! Good luck!"
 	fajl.close()
 	exit()
 
@@ -245,7 +254,7 @@ elif sys.argv[1] == '-i':
 
 # We need some informations first!
 
-	name = raw_input("> First Name: ").lower()
+	name = raw_input("> Name: ").lower()
 	while len(name) == 0 or name == " " or name == "  " or name == "   ":
 		print "\r\n[-] You must enter a name at least!"
 		name = raw_input("> Name: ").lower()
@@ -261,12 +270,12 @@ elif sys.argv[1] == '-i':
 
 	print "\r\n"
 
-	wife = raw_input("> Partners) name: ").lower()
-	wifen = raw_input("> Partners) nickname: ").lower()
-	wifeb = raw_input("> Partners) birthdate (DDMMYYYY): ")
+	wife = raw_input("> Wife's(husband's) name: ").lower()
+	wifen = raw_input("> Wife's(husband's) nickname: ").lower()
+	wifeb = raw_input("> Wife's(husband's) birthdate (DDMMYYYY): ")
 	while len(wifeb) != 0 and len(wifeb) != 8:
 		print "\r\n[-] You must enter 8 digits for birthday!"
-		wifeb = raw_input("> Partners birthdate (DDMMYYYY): ")
+		wifeb = raw_input("> Wife's(husband's) birthdate (DDMMYYYY): ")
 	wifeb = str(wifeb)
 	print "\r\n"
 
@@ -284,11 +293,9 @@ elif sys.argv[1] == '-i':
 	print "\r\n"
 
 	words = ['']
-	words1 = raw_input("> Do you want to add some key words about the victim? Y/[N]: ").lower()
-	words2 = ""
-	if words1 == "y":
-		words2 = raw_input("> Please enter the words, separated by comma. [i.e. hacker,juice,black], spaces will be removed: ").replace(" ","")
-	words = words2.split(",")
+	oth = raw_input("> Do you want to add some key words about the victim? Y/[N]: ").lower()
+	if oth == "y":
+		words = raw_input("> Please enter the words, separated by comma. [i.e. hacker, juice, black]: ").split(", ").lower()
 
 	spechars = ['']
 	spechars1 = raw_input("> Do you want to add special chars at the end of words? Y/[N]: ").lower()
@@ -474,6 +481,14 @@ elif sys.argv[1] == '-i':
 		komb15 = list(concats(kombinaaw, numfrom, numto))
 		komb16 = list(concats(kombinaak, numfrom, numto))
 		komb21 = list(concats(reverse, numfrom, numto))
+                
+        komb12.extend(humanize(word))
+        komb13.extend(humanize(kombinaa))
+        komb14.extend(humanize(kombinaac))
+        komb15.extend(humanize(kombinaaw))
+        komb16.extend(humanize(kombinaak))
+        komb21.extend(humanize(reverse))
+        
 	komb17 = list(komb(reverse, years))
 	komb18 = list(komb(rev_w, wbdss))
 	komb19 = list(komb(rev_k, kbdss))
@@ -559,8 +574,8 @@ elif sys.argv[1] == '-i':
 		lines += 1
 	f.close()
 	
-	print "[+] Saving dictionary to \033[1;31m"+name+".txt\033[1;m, counting \033[1;31m"+str(lines)+"\033[1;m words."
-	print "[+] Now load your pistolero with \033[1;31m"+name+".txt\033[1;m and shoot! Good luck!"
+	print "[+] Saving dictionary to "+name+".txt, counting "+str(lines)+" words."
+	print "[+] Now load your pistolero with "+name+".txt and shoot! Good luck!"
 	exit()
 
 	
